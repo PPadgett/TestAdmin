@@ -6,8 +6,8 @@
 [Alias()]
 [OutputType([String])]
 Param(
-    [scriptblock]
-    $TestCommand = {([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")}
+    [bool]
+    $TestCommand = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
 )
 #####################################################################################
 # If using Script Param during SelfElevation Run Please place them above this line  #
@@ -41,5 +41,4 @@ If (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 ############################################################
 # Run your code that needs to be elevated below this line  #
 ############################################################
-
-([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
+$TestCommand
